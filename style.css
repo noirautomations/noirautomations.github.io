@@ -1,58 +1,192 @@
 :root {
-    /* Premium Sleek Palette */
+    /* Premium Noir Palette */
     --bg: #000000;
-    --card-bg: #111111;
+    --card-bg: #0a0a0a;
     --text-primary: #ffffff;
     --text-secondary: #a1a1a1;
-    --accent: #0070f3; /* Electric Blue */
-    --border: #333333;
+    --accent: #0070f3;
+    --border: rgba(255, 255, 255, 0.1);
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    scroll-behavior: smooth;
 }
 
 body {
     background-color: var(--bg);
     color: var(--text-primary);
     font-family: 'Inter', sans-serif;
-    line-height: 1.5;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
 }
 
-/* Typography Details */
-h1, h2, h3 { font-weight: 700; letter-spacing: -0.05rem; }
-h1 { font-size: 4rem; max-width: 900px; margin: 0 auto 1.5rem; line-height: 1.1; }
-h2 { font-size: 3rem; text-align: center; margin-bottom: 3rem; }
-p { color: var(--text-secondary); font-weight: 300; font-size: 1.2rem; }
+/* 1. Frosted Glass Header */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+}
 
-/* Navigation */
-nav { display: flex; justify-content: space-between; padding: 1.5rem 5%; align-items: center; border-bottom: 1px solid var(--border); }
-.logo { font-size: 1.5rem; font-weight: 700; color: var(--text-primary); }
-.logo .dot { color: var(--accent); }
-nav ul { list-style: none; display: flex; gap: 2rem; align-items: center; }
-nav a { text-decoration: none; color: var(--text-secondary); font-size: 0.95rem; font-weight: 500; transition: color 0.3s; }
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.2rem 8%;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.logo span { color: var(--accent); }
+
+nav ul { list-style: none; display: flex; gap: 2.5rem; align-items: center; }
+
+nav a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
 nav a:hover { color: var(--text-primary); }
-nav .nav-cta { background: var(--text-primary); color: var(--bg); padding: 0.6rem 1.2rem; border-radius: 5px; font-weight: 700; }
 
-/* Hero Section */
-.hero { text-align: center; padding: 120px 5%; display: flex; flex-direction: column; align-items: center; }
-.hero p { max-width: 650px; margin-bottom: 3rem; font-size: 1.4rem;}
-.tagline { color: var(--accent); font-weight: 500; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.15rem; margin-bottom: 1rem; }
-.hero-btns { display: flex; gap: 1rem; }
-.main-cta { background: var(--accent); color: white; padding: 1.2rem 2.5rem; text-decoration: none; border-radius: 5px; font-weight: 700; transition: background 0.3s; }
-.main-cta:hover { background: #0056b3; }
+.nav-cta {
+    background: var(--text-primary);
+    color: var(--bg) !important;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 600;
+}
 
-/* Services Grid */
-.services { padding: 80px 5%; background-color: #080808; border-top: 1px solid var(--border); }
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; width: 100%; max-width: 1100px; margin: 0 auto; }
-.card { background: var(--card-bg); padding: 3rem; border-radius: 12px; border: 1px solid var(--border); transition: transform 0.3s, border-color 0.3s; }
-.card:hover { transform: translateY(-5px); border-color: var(--accent); }
-.card .icon { font-size: 2rem; margin-bottom: 1.5rem; }
-.card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
-.card p { font-size: 1rem; }
+/* 2. Hero with Radial Glow */
+.hero {
+    text-align: center;
+    padding: 160px 5% 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: radial-gradient(circle at center, #001d3d 0%, #000000 60%);
+}
 
-/* Footer */
-footer { text-align: center; padding: 3rem; border-top: 1px solid var(--border); color: var(--text-secondary); font-size: 0.9rem;}
+.tagline {
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    margin-bottom: 1.5rem;
+}
+
+/* 3. Gradient Text Headline */
+h1 {
+    font-size: 4.5rem;
+    font-weight: 800;
+    letter-spacing: -0.15rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    max-width: 900px;
+    background: linear-gradient(180deg, #FFFFFF 0%, #a1a1a1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin-bottom: 3rem;
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+
+.main-cta {
+    background: var(--accent);
+    color: white;
+    padding: 1.1rem 2.2rem;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 0 rgba(0, 112, 243, 0);
+}
+
+.main-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0, 112, 243, 0.4);
+    filter: brightness(1.1);
+}
+
+/* 4. Refined Services Grid */
+.services {
+    padding: 100px 8%;
+}
+
+h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 4rem;
+    letter-spacing: -0.05rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    background: var(--card-bg);
+    padding: 3rem;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    transition: all 0.4s ease;
+}
+
+.card:hover {
+    border-color: var(--accent);
+    background: #0d0d0d;
+    transform: translateY(-8px);
+}
+
+.icon { font-size: 2rem; margin-bottom: 1.5rem; display: block; }
+
+.card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.card p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+footer {
+    text-align: center;
+    padding: 4rem;
+    border-top: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+/* Mobile Responsive Tweaks */
+@media (max-width: 768px) {
+    h1 { font-size: 2.8rem; }
+    nav ul { display: none; } /* Simplified for now */
+}
