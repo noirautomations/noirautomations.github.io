@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HVAC Dispatcher Lab | Noir Automations</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .lab-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            background: radial-gradient(circle at center, #001220 0%, #000000 100%);
+        }
+        .back-link { margin-bottom: 20px; color: var(--accent); text-decoration: none; font-size: 0.9rem; }
+        #voiceflow-hvac {
+            width: 100%;
+            max-width: 1000px;
+            height: 80vh;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(0, 112, 243, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="lab-container">
+        <a href="index.html" class="back-link">← Return to Noir Headquarters</a>
+        <h1 style="font-size: 2rem; margin-bottom: 10px;">HVAC Dispatcher Lab</h1>
+        <p style="color: #888; margin-bottom: 30px;">Scenario: Emergency Boiler Repair - Simulated Inbound Lead</p>
+
+        <div id="voiceflow-hvac">
+            </div>
+    </div>
+
+    <script type="text/javascript">
+      (function(d, t) {
+          var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+          v.onload = function() {
+            window.voiceflow.chat.load({
+              verify: { projectID: 'YOUR_HVAC_PROJECT_ID' },
+              url: 'https://general-runtime.voiceflow.com',
+              versionID: 'production',
+              render: {
+                mode: 'embedded',
+                target: d.getElementById('voiceflow-hvac'),
+              },
+              autostart: true
+            });
+          }
+          v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+      })(document, 'script');
+    </script>
+</body>
+</html>
