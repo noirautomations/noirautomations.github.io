@@ -3,50 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HVAC Dispatcher Lab | Noir Automations</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <title>HVAC Dispatcher | Noir Systems</title>
+    <link rel="stylesheet" href="../style.css">
     <style>
-        .lab-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            background: radial-gradient(circle at center, #001220 0%, #000000 100%);
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 40px 8%;
         }
-        .back-link { margin-bottom: 20px; color: var(--accent); text-decoration: none; font-size: 0.9rem; }
-        #voiceflow-hvac {
-            width: 100%;
-            max-width: 1000px;
-            height: 80vh;
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 0 50px rgba(0, 112, 243, 0.2);
+        .service-btn {
+            background: #111;
+            border: 1px solid var(--border);
+            padding: 30px;
+            text-align: center;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .service-btn:hover {
+            border-color: var(--accent);
+            background: #1a1a1a;
+        }
+        .demo-container {
+            background: #000;
+            padding: 60px 8%;
+            text-align: center;
         }
     </style>
 </head>
 <body>
+    <header>
+        <nav>
+            <div class="logo">NOIR<span>HVAC</span></div>
+            <ul>
+                <li><a href="#heating">Heating</a></li>
+                <li><a href="#cooling">Cooling</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#ai-dispatch" class="nav-cta">Book Now</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <div class="lab-container">
-        <a href="index.html" class="back-link">← Return to Noir Headquarters</a>
-        <h1 style="font-size: 2rem; margin-bottom: 10px;">HVAC Dispatcher Lab</h1>
-        <p style="color: #888; margin-bottom: 30px;">Scenario: Emergency Boiler Repair - Simulated Inbound Lead</p>
+    <section class="hero">
+        <h1>24/7 Intelligent HVAC Dispatch</h1>
+        <p>Select a service below to start a live vetting session with our AI Dispatcher.</p>
+    </section>
 
-        <div id="voiceflow-hvac">
-            </div>
+    <div class="service-grid">
+        <div class="service-btn">🔥 <h3>Heating</h3></div>
+        <div class="service-btn">❄️ <h3>Cooling</h3></div>
+        <div class="service-btn">🛠️ <h3>Install</h3></div>
+        <div class="service-btn">🚨 <h3>Emergency</h3></div>
     </div>
+
+    <section id="ai-dispatch" class="demo-container">
+        <h2>Live Simulation Lab</h2>
+        <div id="voiceflow-hvac" style="height: 700px; border-radius: 20px; overflow: hidden; border: 1px solid var(--accent); max-width: 900px; margin: 0 auto;">
+        </div>
+    </section>
 
     <script type="text/javascript">
       (function(d, t) {
           var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
           v.onload = function() {
             window.voiceflow.chat.load({
-              verify: { projectID: 'YOUR_HVAC_PROJECT_ID' },
+              verify: { projectID: '69d466bf715c36f555fc4c44' },
               url: 'https://general-runtime.voiceflow.com',
               versionID: 'production',
+              voice: {
+                url: "https://runtime-api.voiceflow.com"
+              },
               render: {
                 mode: 'embedded',
                 target: d.getElementById('voiceflow-hvac'),
@@ -54,7 +81,9 @@
               autostart: true
             });
           }
-          v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+          v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs";
+          v.type = "text/javascript";
+          s.parentNode.insertBefore(v, s);
       })(document, 'script');
     </script>
 </body>
