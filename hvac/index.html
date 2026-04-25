@@ -35,7 +35,7 @@
 <body>
     <header>
         <nav>
-            <div lass="logo"><a href="/" style="text-decoration: none; color: inherit;">NOIR<span>HVAC</span></div>
+            <div class="logo"><a href="/" style="text-decoration: none; color: inherit; display: inline-block;">NOIR<span>HVAC</span></div>
             <ul>
                 <li><a href="#heating">Heating</a></li>
                 <li><a href="#cooling">Cooling</a></li>
@@ -51,10 +51,18 @@
     </section>
 
     <div class="service-grid">
-        <div class="service-btn">🔥 <h3>Heating</h3></div>
-        <div class="service-btn">❄️ <h3>Cooling</h3></div>
-        <div class="service-btn">🛠️ <h3>Install</h3></div>
-        <div class="service-btn">🚨 <h3>Emergency</h3></div>
+        <div class="service-btn" onclick="document.getElementById('voiceflow-hvac').scrollIntoView({behavior: 'smooth'})">
+            🔥 <h3>Heating</h3>
+        </div>
+        <div class="service-btn" onclick="document.getElementById('voiceflow-hvac').scrollIntoView({behavior: 'smooth'})">
+            ❄️ <h3>Cooling</h3>
+        </div>
+        <div class="service-btn" onclick="document.getElementById('voiceflow-hvac').scrollIntoView({behavior: 'smooth'})">
+            🛠️ <h3>Install</h3>
+        </div>
+        <div class="service-btn" onclick="document.getElementById('voiceflow-hvac').scrollIntoView({behavior: 'smooth'})">
+            🚨 <h3>Emergency</h3>
+        </div>
     </div>
 
     <section id="ai-dispatch" class="demo-container">
