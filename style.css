@@ -1,0 +1,198 @@
+:root {
+    /* Premium Noir Palette */
+    --bg: #000000;
+    --card-bg: #0a0a0a;
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1a1;
+    --accent: #0070f3;
+    --border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+/* Header & Nav */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.2rem 8%;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.logo .dot { color: var(--accent); }
+
+nav ul { list-style: none; display: flex; gap: 2.5rem; align-items: center; }
+
+nav a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav a:hover { color: var(--text-primary); }
+
+.nav-cta {
+    background: var(--text-primary);
+    color: var(--bg) !important;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 160px 5% 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: radial-gradient(circle at center, #001d3d 0%, #000000 60%);
+}
+
+.tagline {
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    margin-bottom: 1.5rem;
+}
+
+h1 {
+    font-size: 4.5rem;
+    font-weight: 800;
+    letter-spacing: -0.15rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    max-width: 900px;
+    background: linear-gradient(180deg, #FFFFFF 0%, #a1a1a1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin-bottom: 3rem;
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+
+/* Dual Button Styling */
+.hero-btns {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.main-cta {
+    background: var(--accent);
+    color: white;
+    padding: 1.1rem 2.2rem;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.main-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0, 112, 243, 0.4);
+}
+
+.main-cta.secondary {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+}
+
+.main-cta.secondary:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--text-primary);
+    box-shadow: none;
+}
+
+/* Services Section */
+.services {
+    padding: 100px 8%;
+}
+
+h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    background: var(--card-bg);
+    padding: 3rem;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    transition: all 0.4s ease;
+}
+
+.card:hover {
+    border-color: var(--accent);
+    transform: translateY(-8px);
+}
+
+.icon { font-size: 2rem; margin-bottom: 1.5rem; display: block; }
+
+footer {
+    text-align: center;
+    padding: 4rem;
+    border-top: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    h1 { font-size: 2.8rem; }
+    .hero-btns {
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+    }
+}
