@@ -1,12 +1,190 @@
 <!DOCTYPE html>
-<html lang="">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <header></header>
-    <main></main>
-    <footer></footer>
-  </body>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Real Estate Chatbot Demo | Noir Automations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#E8ECEF;--ink:#12171E;--slate:#425064;--teal:#0B5D5B;--teal-d:#084543;--amber:#E3A02F;--white:#fff;--line:#C9D1D8;
+--display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;--body:'Public Sans','Segoe UI',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.5;font-size:16px;min-height:100vh}
+:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+header{padding:18px 0}
+header .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-size:22px;text-decoration:none;color:var(--ink)}
+.back{font-size:15px;font-weight:500;color:var(--ink)}
+h1{font-family:var(--display);font-size:clamp(1.6rem,4vw,2.2rem);line-height:1.1;margin:8px 0 6px;letter-spacing:-.02em}
+.note{color:var(--slate);margin-bottom:18px;font-size:15px}
+.chat{background:var(--white);border-radius:14px;box-shadow:0 18px 40px -18px rgba(18,23,30,.35);overflow:hidden;display:flex;flex-direction:column;height:min(640px,calc(100vh - 210px));min-height:460px}
+.top{background:var(--ink);color:var(--white);padding:13px 18px;font-weight:600;display:flex;justify-content:space-between;font-size:15px}
+.top span{color:var(--amber);font-weight:500}
+#log{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.msg{padding:10px 14px;border-radius:12px;max-width:85%;white-space:pre-wrap;word-wrap:break-word}
+.bot{background:var(--paper);align-self:flex-start;border-bottom-left-radius:3px}
+.you{background:var(--teal);color:var(--white);align-self:flex-end;border-bottom-right-radius:3px}
+.opts{display:flex;flex-wrap:wrap;gap:8px;align-self:flex-start}
+.opts button{font:inherit;font-weight:500;padding:8px 14px;border-radius:20px;border:1.5px solid var(--teal);background:var(--white);color:var(--teal);cursor:pointer}
+.opts button:hover{background:var(--teal);color:var(--white)}
+.opts.used{display:none}
+.card{border:1px solid var(--line);border-radius:10px;padding:12px 14px;align-self:stretch;background:var(--white)}
+.card b{display:block;font-family:var(--display);font-size:1.05rem}
+.card small{color:var(--slate);display:block}
+.card .price{color:var(--teal);font-weight:600;margin-top:2px}
+.sent{border:1.5px dashed var(--amber);border-radius:10px;padding:12px 14px;align-self:stretch;font-size:15px}
+.sent h2{font-family:var(--display);font-size:1.05rem;margin-bottom:6px}
+.sent dl{display:grid;grid-template-columns:auto 1fr;gap:3px 12px}
+.sent dt{color:var(--slate)}
+form{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
+form input{flex:1;font:inherit;padding:11px 14px;border:1.5px solid var(--line);border-radius:8px;min-width:0}
+form button{font:inherit;font-weight:600;padding:11px 20px;border-radius:8px;border:0;background:var(--teal);color:var(--white);cursor:pointer}
+form button:hover{background:var(--teal-d)}
+form:disabled input,#f[data-off] input,#f[data-off] button{opacity:.5;pointer-events:none}
+.foot{color:var(--slate);font-size:14px;margin:16px 0 28px}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="logo" href="index.html"><img src="logo.png" alt="" height="38" style="width:auto">Noir Automations</a>
+  <a class="back" href="index.html">Back to home</a>
+</div></header>
+<main class="wrap">
+  <h1>Real estate chatbot demo</h1>
+  <p class="note">Chat like a buyer or renter would. All listings are samples. In a live setup the lead arrives in the agent’s inbox.</p>
+  <div class="chat">
+    <div class="top">Greenfield Homes <span>Online 24/7</span></div>
+    <div id="log" role="log" aria-live="polite"></div>
+    <form id="f" data-off autocomplete="off">
+      <input id="inp" type="text" maxlength="120" aria-label="Type your answer" placeholder="Choose an option above" disabled>
+      <button type="submit" id="send" disabled>Send</button>
+    </form>
+  </div>
+  <p class="foot">Built by Noir Automations. Inputs are checked before they are accepted, and the bot only talks about property.</p>
+</main>
+<script>
+(function(){
+  var log=document.getElementById('log'),f=document.getElementById('f'),inp=document.getElementById('inp'),send=document.getElementById('send');
+  var d={},pending=null;
+  var FAQ={
+    'Fees':'Agent fees depend on the property and whether you buy or rent. Typical costs are a deposit, first month’s rent or a closing cost estimate. An agent will confirm exact figures for the home you choose.',
+    'Documents needed':'Most applications need a photo ID, proof of income and contact details for references. Buyers also need a pre-approval letter or proof of funds.',
+    'Payment terms':'Renters usually pay a deposit plus the first month up front. Buyers can pay by mortgage or in cash, and an agent can explain your options.',
+    'Viewing process':'You pick a day and time, an agent meets you at the property, and you can ask questions on the spot. Viewings usually take 20 to 30 minutes.'
+  };
+  function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+  function scroll(){log.scrollTop=log.scrollHeight}
+  function say(t,who){log.appendChild(el('div','msg '+(who||'bot'),t));scroll()}
+  function lock(){f.setAttribute('data-off','');inp.disabled=true;send.disabled=true;inp.placeholder='Choose an option above';pending=null}
+  function opts(list,cb){
+    var w=el('div','opts');
+    list.forEach(function(o){var b=el('button',null,o);b.type='button';b.onclick=function(){w.className='opts used';say(o,'you');cb(o)};w.appendChild(b)});
+    log.appendChild(w);scroll();lock();
+  }
+  function ask(ph,validate,cb){
+    f.removeAttribute('data-off');inp.disabled=false;send.disabled=false;inp.placeholder=ph;inp.value='';inp.focus();
+    pending={validate:validate,cb:cb};
+  }
+  f.addEventListener('submit',function(e){
+    e.preventDefault();if(!pending)return;
+    var v=inp.value.trim().replace(/[<>]/g,'');
+    var err=pending.validate(v);
+    if(err){say(err);return}
+    var p=pending;lock();say(v,'you');p.cb(v);
+  });
+  var okText=function(v){return v.length<2?'Please enter at least 2 characters.':null};
+  var okEmail=function(v){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)?null:'That email doesn’t look right. Please check it and try again.'};
+  var okPhone=function(v){var n=v.replace(/\D/g,'');return n.length>=10&&n.length<=15&&/^[\d\s()+\-.]+$/.test(v)?null:'Please enter a valid phone number, for example 512 555 0142.'};
+
+  function start(){
+    d={};
+    say('Hi! I’m the Greenfield Homes assistant. How can I help?');
+    opts(['Buy a home','Rent a home','Ask a question','Talk to an agent'],function(o){
+      if(o==='Buy a home'){d.goal='Buy';type()}
+      else if(o==='Rent a home'){d.goal='Rent';type()}
+      else if(o==='Ask a question')faq();
+      else{d.goal='Talk to an agent';say('Sure. I’ll pass you to an agent. First, a few details so they can reach you.');contact()}
+    });
+  }
+  function faq(){
+    say('What would you like to know?');
+    opts(Object.keys(FAQ).concat(['Something else']),function(o){
+      if(o==='Something else'){say('I can’t answer that one reliably, so I won’t guess. Let me connect you with an agent.');d.goal='Question for an agent';contact();return}
+      say(FAQ[o]);say('Anything else?');
+      opts(['Another question','Find a home','No, that’s all'],function(n){
+        if(n==='Another question')faq();else if(n==='Find a home'){say('Great. Are you buying or renting?');opts(['Buy','Rent'],function(g){d.goal=g;type()})}
+        else{say('Thanks for stopping by. I’m here any time.');restart()}
+      });
+    });
+  }
+  function type(){
+    say('What type of property are you looking for?');
+    opts(['Apartment','House','Condo','Townhome'],function(o){d.type=o;place()});
+  }
+  function place(){
+    say('Which city or neighborhood?');
+    ask('e.g. Austin, TX',okText,function(v){d.place=v;budget()});
+  }
+  function budget(){
+    say(d.goal==='Rent'?'What’s your monthly budget?':'What’s your price range?');
+    var r=d.goal==='Rent'?['Under $1,500','$1,500 to $2,500','$2,500 to $4,000','$4,000+']:['Under $300k','$300k to $500k','$500k to $800k','$800k+'];
+    opts(r,function(o){d.budget=o;when()});
+  }
+  function when(){
+    say('When do you want to move?');
+    opts(['Right away','In 1 to 3 months','Just browsing'],function(o){d.when=o;listings()});
+  }
+  function listings(){
+    say('Here are 3 sample matches in '+d.place+':');
+    var base=d.goal==='Rent'?[2100,2650,3200]:[329000,455000,610000];
+    var beds=['2 bed','3 bed','2 bed'];
+    for(var i=0;i<3;i++){
+      var c=el('div','card');
+      c.appendChild(el('b',null,beds[i]+' '+d.type+' in '+d.place));
+      c.appendChild(el('small',null,['Sunny, updated kitchen','Near parks and schools','Quiet street, parking included'][i]));
+      c.appendChild(el('div','price','$'+base[i].toLocaleString('en-US')+(d.goal==='Rent'?' / month':'')));
+      log.appendChild(c);
+    }
+    scroll();
+    say('Would you like to book a viewing?');
+    opts(['Yes, book a viewing','Not yet'],function(o){
+      if(o==='Not yet'){d.viewing='Not requested';say('No problem. Leave your details and an agent will send you more listings.');contact()}
+      else day();
+    });
+  }
+  function day(){
+    say('Which day works best?');
+    opts(['This weekend','Weekday evening','Next week'],function(a){
+      say('What time of day?');
+      opts(['Morning','Afternoon','Evening'],function(b){d.viewing=a+', '+b;say('Perfect. Last step: your contact details.');contact()});
+    });
+  }
+  function contact(){
+    say('What’s your full name?');
+    ask('Your name',okText,function(n){d.name=n;
+      say('Thanks, '+n.split(' ')[0]+'. What’s the best phone number?');
+      ask('Phone number',okPhone,function(p){d.phone=p;
+        say('And your email address?');
+        ask('you@example.com',okEmail,function(m){d.email=m;done()});
+      });
+    });
+  }
+  function done(){
+    say('You’re all set! An agent will contact you shortly. Here’s the lead summary the agent receives:');
+    var s=el('div','sent');s.appendChild(el('h2',null,'New lead sent to agent’s email'));
+    var dl=el('dl');
+    [['Goal',d.goal],['Property',d.type?d.type+' in '+d.place:null],['Budget',d.budget],['Timeline',d.when],['Viewing',d.viewing],['Name',d.name],['Phone',d.phone],['Email',d.email]].forEach(function(p){
+      if(!p[1])return;dl.appendChild(el('dt',null,p[0]));dl.appendChild(el('dd',null,p[1]));
+    });
+    s.appendChild(dl);log.appendChild(s);scroll();restart();
+  }
+  function restart(){opts(['Start over'],function(){log.appendChild(el('hr'));start()})}
+  start();
+})();
+</script>
+</body>
 </html>
