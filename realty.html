@@ -3,106 +3,227 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Real Estate Chatbot Demo | Noir Automations</title>
+<title>Greenfield Homes | Homes for Sale and Rent in Austin, TX</title>
+<meta name="description" content="Greenfield Homes is a sample real estate agency website by Noir Automations, with a chat assistant you can try.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{--paper:#E8ECEF;--ink:#12171E;--slate:#425064;--teal:#0B5D5B;--teal-d:#084543;--amber:#E3A02F;--white:#fff;--line:#C9D1D8;
---display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;--body:'Public Sans','Segoe UI',system-ui,sans-serif}
+:root{--green:#1F4D3A;--green-d:#163829;--sage:#EAF0EB;--sand:#F7F6F1;--gold:#C79A3B;--ink:#17201B;--mute:#5A675F;--line:#D5DDD6;--white:#fff;
+--serif:'Fraunces',Georgia,serif;--sans:'DM Sans','Segoe UI',system-ui,sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.5;font-size:16px;min-height:100vh}
-:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
-.wrap{max-width:760px;margin:0 auto;padding:0 20px}
-header{padding:18px 0}
-header .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px}
-.logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-size:22px;text-decoration:none;color:var(--ink)}
-.back{font-size:15px;font-weight:500;color:var(--ink)}
-h1{font-family:var(--display);font-size:clamp(1.6rem,4vw,2.2rem);line-height:1.1;margin:8px 0 6px;letter-spacing:-.02em}
-.note{color:var(--slate);margin-bottom:18px;font-size:15px}
-.chat{background:var(--white);border-radius:14px;box-shadow:0 18px 40px -18px rgba(18,23,30,.35);overflow:hidden;display:flex;flex-direction:column;height:min(640px,calc(100vh - 210px));min-height:460px}
-.top{background:var(--ink);color:var(--white);padding:13px 18px;font-weight:600;display:flex;justify-content:space-between;font-size:15px}
-.top span{color:var(--amber);font-weight:500}
-#log{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
-.msg{padding:10px 14px;border-radius:12px;max-width:85%;white-space:pre-wrap;word-wrap:break-word}
-.bot{background:var(--paper);align-self:flex-start;border-bottom-left-radius:3px}
-.you{background:var(--teal);color:var(--white);align-self:flex-end;border-bottom-right-radius:3px}
-.opts{display:flex;flex-wrap:wrap;gap:8px;align-self:flex-start}
-.opts button{font:inherit;font-weight:500;padding:8px 14px;border-radius:20px;border:1.5px solid var(--teal);background:var(--white);color:var(--teal);cursor:pointer}
-.opts button:hover{background:var(--teal);color:var(--white)}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--sand);line-height:1.6;font-size:17px}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+.demo-bar{background:#12171E;color:#fff;font-size:14px;padding:9px 0;text-align:center}
+.demo-bar a{color:#E3A02F;font-weight:700;margin-left:6px}
+header.site{background:var(--white);border-bottom:1px solid var(--line)}
+header.site .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:16px;padding-bottom:16px;gap:16px}
+.brand{font-family:var(--serif);font-weight:700;font-size:25px;color:var(--green);text-decoration:none}
+nav a{margin-left:24px;text-decoration:none;font-weight:500;font-size:16px}
+nav a:hover{color:var(--green);text-decoration:underline}
+.btn{display:inline-block;padding:13px 24px;border-radius:6px;font:inherit;font-weight:700;text-decoration:none;background:var(--green);color:var(--white);border:2px solid var(--green);cursor:pointer}
+.btn:hover{background:var(--green-d);border-color:var(--green-d)}
+.btn.alt{background:transparent;color:var(--green)}
+.btn.alt:hover{background:var(--green);color:var(--white)}
+.hero{background:linear-gradient(120deg,var(--green-d),var(--green));color:var(--white);padding:84px 0}
+.hero h1{font-family:var(--serif);font-size:clamp(2.2rem,5vw,3.7rem);line-height:1.08;max-width:15em;margin-bottom:16px}
+.hero p{max-width:34em;font-size:1.15rem;opacity:.92;margin-bottom:28px}
+.hero .btn{background:var(--gold);border-color:var(--gold);color:#17201B}
+.hero .btn:hover{background:#B5892F;border-color:#B5892F}
+.hero .btn.alt{background:transparent;color:#fff;border-color:#fff;margin-left:10px}
+.hero .btn.alt:hover{background:#fff;color:var(--green)}
+section{padding:68px 0}
+h2{font-family:var(--serif);font-size:clamp(1.7rem,3.4vw,2.4rem);line-height:1.15;margin-bottom:8px}
+.sub{color:var(--mute);margin-bottom:28px;max-width:38em}
+.tabs{display:flex;gap:8px;margin-bottom:24px}
+.tabs button{font:inherit;font-weight:500;padding:9px 20px;border-radius:30px;border:1.5px solid var(--green);background:var(--white);color:var(--green);cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--green);color:var(--white)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{background:var(--white);border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.ph{height:170px;display:flex;align-items:flex-end;justify-content:center;position:relative}
+.ph svg{width:120px;height:90px;margin-bottom:-2px}
+.tag{position:absolute;top:12px;left:12px;background:var(--white);color:var(--green);font-weight:700;font-size:13px;padding:3px 10px;border-radius:20px}
+.card .body{padding:16px 18px 18px}
+.card h3{font-family:var(--serif);font-size:1.15rem;line-height:1.25}
+.card .price{color:var(--green);font-weight:700;font-size:1.2rem;margin:4px 0}
+.card .meta{color:var(--mute);font-size:15px}
+.about{background:var(--sage)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.stats div{background:var(--white);border-radius:10px;padding:18px}
+.stats b{display:block;font-family:var(--serif);font-size:1.9rem;color:var(--green)}
+.contact .box{background:var(--green);color:var(--white);border-radius:12px;padding:36px;display:flex;justify-content:space-between;gap:24px;align-items:center;flex-wrap:wrap}
+.contact .btn{background:var(--gold);border-color:var(--gold);color:#17201B}
+footer{padding:28px 0;color:var(--mute);font-size:14px}
+/* chat widget */
+#launch{position:fixed;right:20px;bottom:20px;z-index:50;font:inherit;font-weight:700;padding:14px 22px;border-radius:40px;border:0;background:var(--gold);color:#17201B;cursor:pointer;box-shadow:0 10px 26px -8px rgba(0,0,0,.45)}
+#panel{position:fixed;right:20px;bottom:20px;z-index:60;width:370px;max-width:calc(100vw - 24px);height:540px;max-height:calc(100vh - 40px);background:var(--white);border-radius:14px;box-shadow:0 22px 50px -16px rgba(0,0,0,.5);display:none;flex-direction:column;overflow:hidden}
+#panel.open{display:flex}
+.top{background:var(--green);color:var(--white);padding:13px 16px;display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:15px}
+.top button{background:none;border:0;color:#fff;font-size:22px;cursor:pointer;line-height:1}
+#log{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:9px;font-size:15px}
+.msg{padding:9px 13px;border-radius:12px;max-width:86%;white-space:pre-wrap;word-wrap:break-word}
+.bot{background:var(--sage);align-self:flex-start;border-bottom-left-radius:3px}
+.you{background:var(--green);color:var(--white);align-self:flex-end;border-bottom-right-radius:3px}
+.opts{display:flex;flex-wrap:wrap;gap:7px;align-self:flex-start}
+.opts button{font:inherit;font-size:14px;font-weight:500;padding:7px 13px;border-radius:20px;border:1.5px solid var(--green);background:var(--white);color:var(--green);cursor:pointer}
+.opts button:hover{background:var(--green);color:var(--white)}
 .opts.used{display:none}
-.card{border:1px solid var(--line);border-radius:10px;padding:12px 14px;align-self:stretch;background:var(--white)}
-.card b{display:block;font-family:var(--display);font-size:1.05rem}
-.card small{color:var(--slate);display:block}
-.card .price{color:var(--teal);font-weight:600;margin-top:2px}
-.sent{border:1.5px dashed var(--amber);border-radius:10px;padding:12px 14px;align-self:stretch;font-size:15px}
-.sent h2{font-family:var(--display);font-size:1.05rem;margin-bottom:6px}
-.sent dl{display:grid;grid-template-columns:auto 1fr;gap:3px 12px}
-.sent dt{color:var(--slate)}
-form{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
-form input{flex:1;font:inherit;padding:11px 14px;border:1.5px solid var(--line);border-radius:8px;min-width:0}
-form button{font:inherit;font-weight:600;padding:11px 20px;border-radius:8px;border:0;background:var(--teal);color:var(--white);cursor:pointer}
-form button:hover{background:var(--teal-d)}
-form:disabled input,#f[data-off] input,#f[data-off] button{opacity:.5;pointer-events:none}
-.foot{color:var(--slate);font-size:14px;margin:16px 0 28px}
-@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+.lc{border:1px solid var(--line);border-radius:9px;padding:10px 12px;align-self:stretch;font-size:14px}
+.lc b{display:block;font-family:var(--serif)}
+.lc span{color:var(--green);font-weight:700}
+.sent{border:1.5px dashed var(--gold);border-radius:9px;padding:11px 13px;align-self:stretch;font-size:14px}
+.sent h2{font-size:1rem;margin-bottom:5px}
+.sent dl{display:grid;grid-template-columns:auto 1fr;gap:2px 10px}
+.sent dt{color:var(--mute)}
+#f{display:flex;gap:8px;padding:11px;border-top:1px solid var(--line)}
+#f input{flex:1;min-width:0;font:inherit;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px}
+#f button{font:inherit;font-weight:700;padding:10px 16px;border:0;border-radius:8px;background:var(--green);color:#fff;cursor:pointer}
+#f[data-off] input,#f[data-off] button{opacity:.5;pointer-events:none}
+@media(max-width:860px){.grid{grid-template-columns:1fr 1fr}.cols{grid-template-columns:1fr}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}nav a{margin-left:14px;font-size:15px}.hero .btn.alt{margin:12px 0 0}#panel{right:12px;bottom:12px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-<header><div class="wrap">
-  <a class="logo" href="index.html"><img src="logo.png" alt="" height="38" style="width:auto">Noir Automations</a>
-  <a class="back" href="index.html">Back to home</a>
+<div class="demo-bar"><div class="wrap">Sample agency website built by Noir Automations. Try the chat assistant in the corner.<a href="index.html">Back to Noir Automations</a></div></div>
+<header class="site"><div class="wrap">
+  <a class="brand" href="#top">Greenfield Homes</a>
+  <nav aria-label="Main"><a href="#listings">Listings</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
 </div></header>
-<main class="wrap">
-  <h1>Real estate chatbot demo</h1>
-  <p class="note">Chat like a buyer or renter would. All listings are samples. In a live setup the lead arrives in the agent’s inbox.</p>
-  <div class="chat">
-    <div class="top">Greenfield Homes <span>Online 24/7</span></div>
-    <div id="log" role="log" aria-live="polite"></div>
-    <form id="f" data-off autocomplete="off">
-      <input id="inp" type="text" maxlength="120" aria-label="Type your answer" placeholder="Choose an option above" disabled>
-      <button type="submit" id="send" disabled>Send</button>
-    </form>
-  </div>
-  <p class="foot">Built by Noir Automations. Inputs are checked before they are accepted, and the bot only talks about property.</p>
+
+<main id="top">
+  <div class="hero"><div class="wrap">
+    <h1>Find a home in Austin that feels like yours.</h1>
+    <p>Browse homes for sale and rent, or ask our assistant. It answers your questions any time of day and sets up a viewing with an agent.</p>
+    <button class="btn" type="button" data-chat>Chat with our assistant</button>
+    <a class="btn alt" href="#listings">Browse listings</a>
+  </div></div>
+
+  <section id="listings"><div class="wrap">
+    <h2>Featured homes</h2>
+    <p class="sub">A small selection from our current listings.</p>
+    <div class="tabs" role="group" aria-label="Filter listings">
+      <button type="button" data-f="all" aria-pressed="true">All</button>
+      <button type="button" data-f="Buy" aria-pressed="false">For sale</button>
+      <button type="button" data-f="Rent" aria-pressed="false">For rent</button>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div></section>
+
+  <section class="about" id="about"><div class="wrap cols">
+    <div>
+      <h2>Local agents who pick up</h2>
+      <p class="sub">Greenfield Homes has helped families, students and first-time buyers across Austin since 2011. Our team knows the neighborhoods, the schools and the market, and we reply fast.</p>
+      <p>Not sure where to start? Ask the assistant a question, tell it what you’re looking for, and an agent will follow up with matching homes.</p>
+    </div>
+    <div class="stats">
+      <div><b>1,200+</b>Homes sold or rented</div>
+      <div><b>4.9/5</b>Average client rating</div>
+      <div><b>24/7</b>Chat assistant</div>
+      <div><b>15 min</b>Typical agent response</div>
+    </div>
+  </div></section>
+
+  <section class="contact" id="contact"><div class="wrap">
+    <div class="box">
+      <div><h2>Ready to see a home?</h2><p>Tell the assistant what you need and book a viewing in under a minute.</p></div>
+      <button class="btn" type="button" data-chat>Chat with our assistant</button>
+    </div>
+  </div></section>
 </main>
+<footer><div class="wrap">Greenfield Homes is a fictional agency used for demonstration. All listings, prices and statistics are samples. Built by <a href="index.html">Noir Automations</a>.</div></footer>
+
+<button id="launch" type="button" data-chat>Chat with us</button>
+<div id="panel" role="dialog" aria-label="Chat with Greenfield Homes assistant">
+  <div class="top"><span>Greenfield Homes assistant</span><button type="button" id="close" aria-label="Close chat">&times;</button></div>
+  <div id="log" role="log" aria-live="polite"></div>
+  <form id="f" data-off autocomplete="off">
+    <input id="inp" type="text" maxlength="120" aria-label="Type your answer" placeholder="Choose an option above" disabled>
+    <button type="submit" id="send" disabled>Send</button>
+  </form>
+</div>
+
+<!-- ===== VOICEFLOW: paste the snippet from Voiceflow's Publish > Website chat here, then set USE_BUILTIN_DEMO to false below ===== -->
+
+<!-- ===== END VOICEFLOW ===== -->
+
 <script>
+var USE_BUILTIN_DEMO = true; // set to false after pasting your Voiceflow snippet above
 (function(){
-  var log=document.getElementById('log'),f=document.getElementById('f'),inp=document.getElementById('inp'),send=document.getElementById('send');
-  var d={},pending=null;
+  function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+  /* listings */
+  var L=[
+    ['Buy','Modern 3 bed house','Zilker, Austin','$589,000','3 bed · 2 bath · 1,850 sq ft','#CFE3D4'],
+    ['Rent','Bright 2 bed apartment','East Austin','$2,150 / month','2 bed · 2 bath · 1,020 sq ft','#E6DDC4'],
+    ['Buy','Renovated 2 bed condo','Downtown Austin','$415,000','2 bed · 2 bath · 1,100 sq ft','#D4DDE8'],
+    ['Rent','Family townhome with garage','Mueller, Austin','$3,200 / month','3 bed · 2.5 bath · 1,640 sq ft','#DCE6CF'],
+    ['Buy','Hill Country retreat','Westlake Hills','$845,000','4 bed · 3 bath · 2,600 sq ft','#E5D7CF'],
+    ['Rent','Quiet studio near campus','North Campus','$1,350 / month','Studio · 1 bath · 520 sq ft','#D6E4E4']
+  ];
+  var house='<svg viewBox="0 0 120 90" aria-hidden="true"><path d="M6 46 60 6l54 40v44H6Z" fill="#1F4D3A" opacity=".85"/><rect x="48" y="52" width="24" height="38" fill="#F7F6F1"/><rect x="18" y="52" width="20" height="16" fill="#F7F6F1" opacity=".8"/><rect x="82" y="52" width="20" height="16" fill="#F7F6F1" opacity=".8"/></svg>';
+  var grid=document.getElementById('grid');
+  function render(f){
+    grid.textContent='';
+    L.forEach(function(x){
+      if(f!=='all'&&x[0]!==f)return;
+      var c=el('article','card'),p=el('div','ph');p.style.background=x[5];p.innerHTML=house;
+      p.appendChild(el('span','tag',x[0]==='Buy'?'For sale':'For rent'));
+      var b=el('div','body');b.appendChild(el('h3',null,x[1]));b.appendChild(el('div','price',x[3]));
+      b.appendChild(el('div','meta',x[2]));b.appendChild(el('div','meta',x[4]));
+      c.appendChild(p);c.appendChild(b);grid.appendChild(c);
+    });
+  }
+  render('all');
+  document.querySelectorAll('.tabs button').forEach(function(b){
+    b.onclick=function(){document.querySelectorAll('.tabs button').forEach(function(o){o.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true');render(b.getAttribute('data-f'))};
+  });
+
+  if(!USE_BUILTIN_DEMO){
+    document.getElementById('launch').style.display='none';
+    document.getElementById('panel').style.display='none';
+    document.querySelectorAll('[data-chat]').forEach(function(b){
+      b.onclick=function(){try{window.voiceflow.chat.open()}catch(e){}};
+    });
+    return;
+  }
+
+  /* built-in scripted demo chat */
+  var log=document.getElementById('log'),f=document.getElementById('f'),inp=document.getElementById('inp'),send=document.getElementById('send'),panel=document.getElementById('panel'),launch=document.getElementById('launch');
+  var d={},pending=null,started=false;
+  function openChat(){panel.classList.add('open');launch.style.display='none';if(!started){started=true;start()}}
+  function closeChat(){panel.classList.remove('open');launch.style.display=''}
+  document.querySelectorAll('[data-chat]').forEach(function(b){b.addEventListener('click',openChat)});
+  document.getElementById('close').onclick=closeChat;
   var FAQ={
-    'Fees':'Agent fees depend on the property and whether you buy or rent. Typical costs are a deposit, first month’s rent or a closing cost estimate. An agent will confirm exact figures for the home you choose.',
-    'Documents needed':'Most applications need a photo ID, proof of income and contact details for references. Buyers also need a pre-approval letter or proof of funds.',
-    'Payment terms':'Renters usually pay a deposit plus the first month up front. Buyers can pay by mortgage or in cash, and an agent can explain your options.',
+    'Fees':'Fees depend on the property and on whether you buy or rent. Typical costs are a deposit plus the first month’s rent, or closing costs for buyers. An agent will confirm exact figures for the home you choose.',
+    'Documents needed':'Most rental applications need a photo ID, proof of income and references. Buyers also need a pre-approval letter or proof of funds.',
+    'Payment terms':'Renters usually pay a deposit plus the first month up front. Buyers can use a mortgage or pay cash, and an agent can walk you through the options.',
     'Viewing process':'You pick a day and time, an agent meets you at the property, and you can ask questions on the spot. Viewings usually take 20 to 30 minutes.'
   };
-  function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
-  function scroll(){log.scrollTop=log.scrollHeight}
-  function say(t,who){log.appendChild(el('div','msg '+(who||'bot'),t));scroll()}
+  function sc(){log.scrollTop=log.scrollHeight}
+  function say(t,w){log.appendChild(el('div','msg '+(w||'bot'),t));sc()}
   function lock(){f.setAttribute('data-off','');inp.disabled=true;send.disabled=true;inp.placeholder='Choose an option above';pending=null}
   function opts(list,cb){
     var w=el('div','opts');
     list.forEach(function(o){var b=el('button',null,o);b.type='button';b.onclick=function(){w.className='opts used';say(o,'you');cb(o)};w.appendChild(b)});
-    log.appendChild(w);scroll();lock();
+    log.appendChild(w);sc();lock();
   }
-  function ask(ph,validate,cb){
-    f.removeAttribute('data-off');inp.disabled=false;send.disabled=false;inp.placeholder=ph;inp.value='';inp.focus();
-    pending={validate:validate,cb:cb};
-  }
+  function ask(ph,validate,cb){f.removeAttribute('data-off');inp.disabled=false;send.disabled=false;inp.placeholder=ph;inp.value='';inp.focus();pending={validate:validate,cb:cb}}
   f.addEventListener('submit',function(e){
     e.preventDefault();if(!pending)return;
-    var v=inp.value.trim().replace(/[<>]/g,'');
-    var err=pending.validate(v);
+    var v=inp.value.trim().replace(/[<>]/g,''),err=pending.validate(v);
     if(err){say(err);return}
     var p=pending;lock();say(v,'you');p.cb(v);
   });
   var okText=function(v){return v.length<2?'Please enter at least 2 characters.':null};
   var okEmail=function(v){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)?null:'That email doesn’t look right. Please check it and try again.'};
   var okPhone=function(v){var n=v.replace(/\D/g,'');return n.length>=10&&n.length<=15&&/^[\d\s()+\-.]+$/.test(v)?null:'Please enter a valid phone number, for example 512 555 0142.'};
-
   function start(){
-    d={};
-    say('Hi! I’m the Greenfield Homes assistant. How can I help?');
+    d={};say('Hi! I’m the Greenfield Homes assistant. How can I help?');
     opts(['Buy a home','Rent a home','Ask a question','Talk to an agent'],function(o){
       if(o==='Buy a home'){d.goal='Buy';type()}
       else if(o==='Rent a home'){d.goal='Rent';type()}
@@ -113,44 +234,32 @@ form:disabled input,#f[data-off] input,#f[data-off] button{opacity:.5;pointer-ev
   function faq(){
     say('What would you like to know?');
     opts(Object.keys(FAQ).concat(['Something else']),function(o){
-      if(o==='Something else'){say('I can’t answer that one reliably, so I won’t guess. Let me connect you with an agent.');d.goal='Question for an agent';contact();return}
+      if(o==='Something else'){say('I can’t answer that reliably, so I won’t guess. Let me connect you with an agent.');d.goal='Question for an agent';contact();return}
       say(FAQ[o]);say('Anything else?');
       opts(['Another question','Find a home','No, that’s all'],function(n){
-        if(n==='Another question')faq();else if(n==='Find a home'){say('Great. Are you buying or renting?');opts(['Buy','Rent'],function(g){d.goal=g;type()})}
+        if(n==='Another question')faq();
+        else if(n==='Find a home'){say('Great. Are you buying or renting?');opts(['Buy','Rent'],function(g){d.goal=g;type()})}
         else{say('Thanks for stopping by. I’m here any time.');restart()}
       });
     });
   }
-  function type(){
-    say('What type of property are you looking for?');
-    opts(['Apartment','House','Condo','Townhome'],function(o){d.type=o;place()});
-  }
-  function place(){
-    say('Which city or neighborhood?');
-    ask('e.g. Austin, TX',okText,function(v){d.place=v;budget()});
-  }
+  function type(){say('What type of property are you looking for?');opts(['Apartment','House','Condo','Townhome'],function(o){d.type=o;place()})}
+  function place(){say('Which city or neighborhood?');ask('e.g. Austin, TX',okText,function(v){d.place=v;budget()})}
   function budget(){
     say(d.goal==='Rent'?'What’s your monthly budget?':'What’s your price range?');
     var r=d.goal==='Rent'?['Under $1,500','$1,500 to $2,500','$2,500 to $4,000','$4,000+']:['Under $300k','$300k to $500k','$500k to $800k','$800k+'];
     opts(r,function(o){d.budget=o;when()});
   }
-  function when(){
-    say('When do you want to move?');
-    opts(['Right away','In 1 to 3 months','Just browsing'],function(o){d.when=o;listings()});
-  }
+  function when(){say('When do you want to move?');opts(['Right away','In 1 to 3 months','Just browsing'],function(o){d.when=o;listings()})}
   function listings(){
     say('Here are 3 sample matches in '+d.place+':');
-    var base=d.goal==='Rent'?[2100,2650,3200]:[329000,455000,610000];
-    var beds=['2 bed','3 bed','2 bed'];
+    var base=d.goal==='Rent'?[2100,2650,3200]:[329000,455000,610000],beds=['2 bed','3 bed','2 bed'];
     for(var i=0;i<3;i++){
-      var c=el('div','card');
-      c.appendChild(el('b',null,beds[i]+' '+d.type+' in '+d.place));
-      c.appendChild(el('small',null,['Sunny, updated kitchen','Near parks and schools','Quiet street, parking included'][i]));
-      c.appendChild(el('div','price','$'+base[i].toLocaleString('en-US')+(d.goal==='Rent'?' / month':'')));
+      var c=el('div','lc');c.appendChild(el('b',null,beds[i]+' '+d.type+' in '+d.place));
+      c.appendChild(el('span',null,'$'+base[i].toLocaleString('en-US')+(d.goal==='Rent'?' / month':'')));
       log.appendChild(c);
     }
-    scroll();
-    say('Would you like to book a viewing?');
+    sc();say('Would you like to book a viewing?');
     opts(['Yes, book a viewing','Not yet'],function(o){
       if(o==='Not yet'){d.viewing='Not requested';say('No problem. Leave your details and an agent will send you more listings.');contact()}
       else day();
@@ -167,10 +276,7 @@ form:disabled input,#f[data-off] input,#f[data-off] button{opacity:.5;pointer-ev
     say('What’s your full name?');
     ask('Your name',okText,function(n){d.name=n;
       say('Thanks, '+n.split(' ')[0]+'. What’s the best phone number?');
-      ask('Phone number',okPhone,function(p){d.phone=p;
-        say('And your email address?');
-        ask('you@example.com',okEmail,function(m){d.email=m;done()});
-      });
+      ask('Phone number',okPhone,function(p){d.phone=p;say('And your email address?');ask('you@example.com',okEmail,function(m){d.email=m;done()})});
     });
   }
   function done(){
@@ -180,10 +286,9 @@ form:disabled input,#f[data-off] input,#f[data-off] button{opacity:.5;pointer-ev
     [['Goal',d.goal],['Property',d.type?d.type+' in '+d.place:null],['Budget',d.budget],['Timeline',d.when],['Viewing',d.viewing],['Name',d.name],['Phone',d.phone],['Email',d.email]].forEach(function(p){
       if(!p[1])return;dl.appendChild(el('dt',null,p[0]));dl.appendChild(el('dd',null,p[1]));
     });
-    s.appendChild(dl);log.appendChild(s);scroll();restart();
+    s.appendChild(dl);log.appendChild(s);sc();restart();
   }
   function restart(){opts(['Start over'],function(){log.appendChild(el('hr'));start()})}
-  start();
 })();
 </script>
 </body>
