@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Greenfield Homes | Homes for Sale and Rent in Austin, TX</title>
+<meta name="description" content="Greenfield Homes is a sample real estate agency website by Noir Automations, with a chat assistant you can try.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--green:#1F4D3A;--green-d:#163829;--sage:#EAF0EB;--sand:#F7F6F1;--gold:#C79A3B;--ink:#17201B;--mute:#5A675F;--line:#D5DDD6;--white:#fff;
+--serif:'Fraunces',Georgia,serif;--sans:'DM Sans','Segoe UI',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--sand);line-height:1.6;font-size:17px}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+.demo-bar{background:#12171E;color:#fff;font-size:14px;padding:9px 0;text-align:center}
+.demo-bar a{color:#E3A02F;font-weight:700;margin-left:6px}
+header.site{background:var(--white);border-bottom:1px solid var(--line)}
+header.site .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:16px;padding-bottom:16px;gap:16px}
+.brand{font-family:var(--serif);font-weight:700;font-size:25px;color:var(--green);text-decoration:none}
+nav a{margin-left:24px;text-decoration:none;font-weight:500;font-size:16px}
+nav a:hover{color:var(--green);text-decoration:underline}
+.btn{display:inline-block;padding:13px 24px;border-radius:6px;font:inherit;font-weight:700;text-decoration:none;background:var(--green);color:var(--white);border:2px solid var(--green);cursor:pointer}
+.btn:hover{background:var(--green-d);border-color:var(--green-d)}
+.btn.alt{background:transparent;color:var(--green)}
+.btn.alt:hover{background:var(--green);color:var(--white)}
+.hero{background:linear-gradient(120deg,var(--green-d),var(--green));color:var(--white);padding:84px 0}
+.hero h1{font-family:var(--serif);font-size:clamp(2.2rem,5vw,3.7rem);line-height:1.08;max-width:15em;margin-bottom:16px}
+.hero p{max-width:34em;font-size:1.15rem;opacity:.92;margin-bottom:28px}
+.hero .btn{background:var(--gold);border-color:var(--gold);color:#17201B}
+.hero .btn:hover{background:#B5892F;border-color:#B5892F}
+.hero .btn.alt{background:transparent;color:#fff;border-color:#fff;margin-left:10px}
+.hero .btn.alt:hover{background:#fff;color:var(--green)}
+section{padding:68px 0}
+h2{font-family:var(--serif);font-size:clamp(1.7rem,3.4vw,2.4rem);line-height:1.15;margin-bottom:8px}
+.sub{color:var(--mute);margin-bottom:28px;max-width:38em}
+.tabs{display:flex;gap:8px;margin-bottom:24px}
+.tabs button{font:inherit;font-weight:500;padding:9px 20px;border-radius:30px;border:1.5px solid var(--green);background:var(--white);color:var(--green);cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--green);color:var(--white)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{background:var(--white);border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.ph{height:170px;display:flex;align-items:flex-end;justify-content:center;position:relative}
+.ph svg{width:120px;height:90px;margin-bottom:-2px}
+.tag{position:absolute;top:12px;left:12px;background:var(--white);color:var(--green);font-weight:700;font-size:13px;padding:3px 10px;border-radius:20px}
+.card .body{padding:16px 18px 18px}
+.card h3{font-family:var(--serif);font-size:1.15rem;line-height:1.25}
+.card .price{color:var(--green);font-weight:700;font-size:1.2rem;margin:4px 0}
+.card .meta{color:var(--mute);font-size:15px}
+.about{background:var(--sage)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.stats div{background:var(--white);border-radius:10px;padding:18px}
+.stats b{display:block;font-family:var(--serif);font-size:1.9rem;color:var(--green)}
+.contact .box{background:var(--green);color:var(--white);border-radius:12px;padding:36px;display:flex;justify-content:space-between;gap:24px;align-items:center;flex-wrap:wrap}
+.contact .btn{background:var(--gold);border-color:var(--gold);color:#17201B}
+footer{padding:28px 0;color:var(--mute);font-size:14px}
+@media(max-width:860px){.grid{grid-template-columns:1fr 1fr}.cols{grid-template-columns:1fr}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}nav a{margin-left:14px;font-size:15px}.hero .btn.alt{margin:12px 0 0}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="demo-bar"><div class="wrap">Sample agency website built by Noir Automations. Try the chat assistant in the corner.<a href="/">Back to Noir Automations</a></div></div>
+<header class="site"><div class="wrap">
+  <a class="brand" href="#top">Greenfield Homes</a>
+  <nav aria-label="Main"><a href="#listings">Listings</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+</div></header>
+
+<main id="top">
+  <div class="hero"><div class="wrap">
+    <h1>Find a home in Austin that feels like yours.</h1>
+    <p>Browse homes for sale and rent, or ask our assistant. It answers your questions any time of day and sets up a viewing with an agent.</p>
+    <button class="btn" type="button" data-chat>Chat with our assistant</button>
+    <a class="btn alt" href="#listings">Browse listings</a>
+  </div></div>
+
+  <section id="listings"><div class="wrap">
+    <h2>Featured homes</h2>
+    <p class="sub">A small selection from our current listings.</p>
+    <div class="tabs" role="group" aria-label="Filter listings">
+      <button type="button" data-f="all" aria-pressed="true">All</button>
+      <button type="button" data-f="Buy" aria-pressed="false">For sale</button>
+      <button type="button" data-f="Rent" aria-pressed="false">For rent</button>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div></section>
+
+  <section class="about" id="about"><div class="wrap cols">
+    <div>
+      <h2>Local agents who pick up</h2>
+      <p class="sub">Greenfield Homes has helped families, students and first-time buyers across Austin since 2011. Our team knows the neighborhoods, the schools and the market, and we reply fast.</p>
+      <p>Not sure where to start? Ask the assistant a question, tell it what you’re looking for, and an agent will follow up with matching homes.</p>
+    </div>
+    <div class="stats">
+      <div><b>1,200+</b>Homes sold or rented</div>
+      <div><b>4.9/5</b>Average client rating</div>
+      <div><b>24/7</b>Chat assistant</div>
+      <div><b>15 min</b>Typical agent response</div>
+    </div>
+  </div></section>
+
+  <section class="contact" id="contact"><div class="wrap">
+    <div class="box">
+      <div><h2>Ready to see a home?</h2><p>Tell the assistant what you need and book a viewing in under a minute.</p></div>
+      <button class="btn" type="button" data-chat>Chat with our assistant</button>
+    </div>
+  </div></section>
+</main>
+<footer><div class="wrap">Greenfield Homes is a fictional agency used for demonstration. All listings, prices and statistics are samples. Built by <a href="/">Noir Automations</a>.</div></footer>
+
+
+<!-- ===== VOICEFLOW: paste the snippet from Voiceflow's Publish > Website chat here ===== -->
+
+<!-- ===== END VOICEFLOW ===== -->
+
+<script>
+(function(){
+  function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+  /* listings */
+  var L=[
+    ['Buy','Modern 3 bed house','Zilker, Austin','$589,000','3 bed · 2 bath · 1,850 sq ft','#CFE3D4'],
+    ['Rent','Bright 2 bed apartment','East Austin','$2,150 / month','2 bed · 2 bath · 1,020 sq ft','#E6DDC4'],
+    ['Buy','Renovated 2 bed condo','Downtown Austin','$415,000','2 bed · 2 bath · 1,100 sq ft','#D4DDE8'],
+    ['Rent','Family townhome with garage','Mueller, Austin','$3,200 / month','3 bed · 2.5 bath · 1,640 sq ft','#DCE6CF'],
+    ['Buy','Hill Country retreat','Westlake Hills','$845,000','4 bed · 3 bath · 2,600 sq ft','#E5D7CF'],
+    ['Rent','Quiet studio near campus','North Campus','$1,350 / month','Studio · 1 bath · 520 sq ft','#D6E4E4']
+  ];
+  var house='<svg viewBox="0 0 120 90" aria-hidden="true"><path d="M6 46 60 6l54 40v44H6Z" fill="#1F4D3A" opacity=".85"/><rect x="48" y="52" width="24" height="38" fill="#F7F6F1"/><rect x="18" y="52" width="20" height="16" fill="#F7F6F1" opacity=".8"/><rect x="82" y="52" width="20" height="16" fill="#F7F6F1" opacity=".8"/></svg>';
+  var grid=document.getElementById('grid');
+  function render(f){
+    grid.textContent='';
+    L.forEach(function(x){
+      if(f!=='all'&&x[0]!==f)return;
+      var c=el('article','card'),p=el('div','ph');p.style.background=x[5];p.innerHTML=house;
+      p.appendChild(el('span','tag',x[0]==='Buy'?'For sale':'For rent'));
+      var b=el('div','body');b.appendChild(el('h3',null,x[1]));b.appendChild(el('div','price',x[3]));
+      b.appendChild(el('div','meta',x[2]));b.appendChild(el('div','meta',x[4]));
+      c.appendChild(p);c.appendChild(b);grid.appendChild(c);
+    });
+  }
+  render('all');
+  document.querySelectorAll('.tabs button').forEach(function(b){
+    b.onclick=function(){document.querySelectorAll('.tabs button').forEach(function(o){o.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true');render(b.getAttribute('data-f'))};
+  });
+
+  document.querySelectorAll('[data-chat]').forEach(function(b){
+    b.addEventListener('click',function(){try{window.voiceflow.chat.open()}catch(e){}});
+  });
+})();
+</script>
+</body>
+</html>
